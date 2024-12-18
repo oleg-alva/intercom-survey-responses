@@ -11,9 +11,9 @@ RUN pip install -r requirements.txt
 ADD dbt_pipeline dbt_pipeline 
 ADD terraform terraform
 
-# Include necessary files for dbt and GCP - TODO: Change this to your project name
+# Include necessary files for dbt and GCP
 COPY profiles.yml .
-# COPY google-service-account-<dbt-pipeline>-runtime.json . 
+COPY google-service-account-intercom-survey-responses-runtime.json . 
 
 # Copy run script and make executable
 COPY run.sh .

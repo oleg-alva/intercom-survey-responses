@@ -1,21 +1,114 @@
-
-version: 2
+version: 1
 
 models:
 
-  - name: fact_table_name
-    description: "Fact table in star schema, representing table_name"
+  - name: dim_dates
+    description: "Date dimension table containing calendar attributes"
     config:
       contract:
         enforced: true
     columns:
 
-      - name: column_name
-        description: "The primary key for this table (hash of column_name and activated_date)"
-        data_type: string
+      - name: date_day
+        description: "The primary key for this table"
+        data_type: date
         constraints:
-          - type: not_null 
-          - type: primary_key # Not enforced in BigQuery
+          - type: not_null
+          - type: primary_key
             warn_unenforced: false
-        data_tests:
+        tests:
           - unique
+      - name: day_of_week
+        description: "Name of the day of week"
+        data_type: string
+      - name: day_of_month
+        description: "Day number within the month (1-31)"
+        data_type: integer
+      - name: day_of_year
+        description: "Day number within the year (1-366)"
+        data_type: integer
+      - name: week_of_year
+        description: "Week number within the year"
+        data_type: integer
+      - name: month_of_year
+        description: "Month number (1-12)"
+        data_type: integer
+      - name: month_name
+        description: "Name of the month"
+        data_type: string
+      - name: quarter_of_year
+        description: "Quarter number (1-4)"
+        data_type: integer
+      - name: year_number
+        description: "Year number"
+        data_type: integer
+
+  - name: csat_response
+    description: "Customer satisfaction survey responses"
+    config:
+      contract:
+        enforced: true
+    columns:
+
+      - name: survey_content_id
+        description: "The survey content identifier"
+        data_type: integer
+      - name: survey_content_title
+        description: "Title of the survey"
+        data_type: string
+      - name: respondent_email
+        description: "Email of the survey respondent"
+        data_type: string
+      - name: organization_id
+        description: "Organization identifier"
+        data_type: integer
+      - name: organization_name
+        description: "Name of the organization"
+        data_type: string
+      - name: question_id
+        description: "Question identifier"
+        data_type: integer
+      - name: answered_at
+        description: "Timestamp when the response was submitted"
+        data_type: timestamp
+      - name: response
+        description: "Numeric response value (1-5)"
+        data_type: integer
+      - name: category
+        description: "Categorized response (positive/neutral/negative)"
+        data_type: string
+
+  - name: nps_response
+    description: "Net Promoter Score survey responses"
+    config:
+      contract:
+        enforced: true
+    columns:
+
+      - name: survey_content_id
+        description: "The survey content identifier"
+        data_type: integer
+      - name: survey_content_title
+        description: "Title of the survey"
+        data_type: string
+      - name: respondent_email
+        description: "Email of the survey respondent"
+        data_type: string
+      - name: organization_id
+        description: "Organization identifier"
+        data_type: integer
+      - name: organization_name
+        description: "Name of the organization"
+        data_type: string
+      - name: question_id
+        description: "Question identifier"
+        data_type: integer
+      - name: answered_at
+        description: "Timestamp when the response was submitted"
+        data_type: timestamp
+      - name: response
+        description: "Numeric response value (0-10)"
+        data_type: integer
+      - name: category
+        description: "NPS category (promoter/passive/detractor)"
+        data_type: string

@@ -11,7 +11,8 @@ locals {
     ]
 
     datasets = [
-        # TODO: Add your datasets here
+        "alva-metrics.user_activity_events_production",
+        "alva-backend.main"
     ]
 
     env_vars = {
@@ -65,10 +66,10 @@ resource "google_bigquery_dataset_iam_member" "data_viewer" {
 } 
 
 # Artifact registry
-resource "google_artifact_registry_repository" "dbt_pipeline_repo" {
+resource "google_artifact_registry_repository" "intercom_survey_responses_repo" {
     location = var.gcs_location
     repository_id = var.project_name
-    description = "Docker repository for ${var.project_name} transformation"
+    description = "Docker repository for Intercom survey responses transformation"
     format = "DOCKER"
 }
 
@@ -102,9 +103,9 @@ resource "google_cloud_run_v2_job" "transformation_job" {
 }
 
 # Cloud scheduler
-resource "google_cloud_scheduler_job" "dbt_pipeline_scheduler" {
-    name = "${var.project_name}-transformation-job"
-    description = "Runs transformations for ${var.project_name} data every 5 minutes"
+resource "google_cloud_scheduler_job" "intercom_survey_responses_scheduler" {
+    name = "intercom-survey-responses-transformation-job"
+    description = "Runs transformations for intercom_survey_responses data every 5 minutes"
     schedule = "*/5 * * * *"
     attempt_deadline = "320s"
     region = "europe-west3"
