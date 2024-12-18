@@ -7,7 +7,7 @@ variable "gcp_project" {
 variable "project_name" {
     description = "The name of the project/application"
     type        = string
-    default     = "intercom_survey_responses" 
+    default     = "intercom-survey-responses" 
 }
 
 variable "gcs_region" {

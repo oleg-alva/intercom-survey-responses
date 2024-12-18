@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM --platform=linux/amd64 python:3.12-slim
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ ADD terraform terraform
 
 # Include necessary files for dbt and GCP
 COPY profiles.yml .
-COPY google-service-account-intercom-survey-responses-runtime.json . 
+COPY google-service-account-intercom-survey-responses.json . 
 
 # Copy run script and make executable
 COPY run.sh .

@@ -25,7 +25,7 @@ locals {
 # Service account for project
 resource "google_service_account"  "runtime_account" {
     project = var.gcp_project
-    account_id = "${var.project_name}-runtime"
+    account_id = "${var.project_name}"
     lifecycle {
       prevent_destroy = true
     }
@@ -38,7 +38,7 @@ resource "google_service_account_key" "runtime_account_key" {
 # Local file for service account json
 resource "local_file" "google_service_account_keyfile" {
     content = base64decode(google_service_account_key.runtime_account_key.private_key)
-    filename = "../google-service-account-${var.project_name}-runtime.json"
+    filename = "../google-service-account-${var.project_name}.json"
 }
 
 # Project level permission for service account
@@ -51,7 +51,7 @@ resource "google_project_iam_member" "project_user" {
 
 # Bigquery dataset
 resource "google_bigquery_dataset" "dataset" {
-    dataset_id = var.project_name
+    dataset_id = "intercom_survey_responses"
     description = "Dataset for ${var.project_name}"
     location = "EU"
 }
