@@ -26,5 +26,5 @@ variable "gcs_location" {
 variable "image_location" {
     description = "Google Artifact Registry Image Location"
     type = string
-    default = "europe-docker.pkg.dev/alva-analytics/intercom_survey_responses/intercom_survey_responses"
+    default = "europe-docker.pkg.dev/alva-analytics/intercom-survey-responses/intercom-survey-responses"
 }

@@ -1,4 +1,4 @@
-intercom_survey_responses: # TODO: Change this to your project name
+intercom_survey_responses:
   outputs:
     dev:
       dataset: intercom_survey_responses_dev

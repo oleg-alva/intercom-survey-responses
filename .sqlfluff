@@ -3,8 +3,8 @@ dialect = bigquery
 templater = dbt
 
 [sqlfluff:templater:dbt]
-project_dir = intercom_survey_responses # TODO: Change this to your project name
-profiles_dir = intercom_survey_responses # TODO: Change this to your project name
+project_dir = intercom_survey_responses 
+profiles_dir = intercom_survey_responses
 target = dev
 
 [sqlfluff:templater:jinja]
