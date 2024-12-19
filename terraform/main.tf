@@ -106,8 +106,8 @@ resource "google_cloud_run_v2_job" "transformation_job" {
 # Cloud scheduler
 resource "google_cloud_scheduler_job" "intercom_survey_responses_scheduler" {
     name = "intercom-survey-responses-transformation-job"
-    description = "Runs transformations for intercom_survey_responses data every 5 minutes"
-    schedule = "*/5 * * * *"
+    description = "Runs transformations for job position usage data every 4 hours" 
+    schedule = "0 */4 * * *"
     attempt_deadline = "320s"
     region = "europe-west3"
     project = var.gcp_project
