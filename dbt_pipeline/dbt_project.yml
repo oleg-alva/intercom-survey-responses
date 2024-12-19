@@ -1,7 +1,7 @@
-name: 'intercom_survey_responses'
-version: '1.0.0'
+name: intercom_survey_responses
+version: 1.0.0
 
-profile: 'intercom_survey_responses'
+profile: intercom_survey_responses
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -20,7 +20,7 @@ vars:
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 models:
-  intercom_survey_responses: 
+  intercom_survey_responses:
     core:
       +materialized: table
     metrics:

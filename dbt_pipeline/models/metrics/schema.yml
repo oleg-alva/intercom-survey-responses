@@ -1,7 +1,6 @@
-version: 1
+version: 2
 
 models:
-
   - name: csat_score
     description: "CSAT score calculated monthly as (number of 4+ ratings) / (total responses)"
     config:
@@ -9,21 +8,9 @@ models:
         enforced: true
     columns:
 
-      - name: year_number
-        description: "Year of the CSAT measurement"
-        data_type: "integer"
-        constraints:
-          - type: not_null
-
-      - name: month_of_year
+      - name: month_start_date
         description: "Month number (1-12) of the CSAT measurement"
-        data_type: "integer"
-        constraints:
-          - type: not_null
-
-      - name: month_name
-        description: "Month name of the CSAT measurement"
-        data_type: "string"
+        data_type: "date"
         constraints:
           - type: not_null
 
@@ -39,21 +26,9 @@ models:
       contract:
         enforced: true
     columns:
-      - name: response_count
-        description: "Total number of NPS responses"
-        data_type: "integer"
-        constraints:
-          - type: not_null
-
-      - name: n_promoters
-        description: "Number of promoter responses (customers who gave a high rating)"
-        data_type: "integer"
-        constraints:
-          - type: not_null
-
-      - name: n_detractors
-        description: "Number of detractor responses (customers who gave a low rating)"
-        data_type: "integer"
+      - name: month_start_date
+        description: "Month number (1-12) of the CSAT measurement"
+        data_type: "date"
         constraints:
           - type: not_null
 

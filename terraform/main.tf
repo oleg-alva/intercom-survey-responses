@@ -12,7 +12,8 @@ locals {
 
     datasets = [
         "alva-metrics.user_activity_events_production",
-        "alva-backend.main"
+        "alva-backend.main",
+        "alva-metrics.satismeter_legacy_data"
     ]
 
     env_vars = {

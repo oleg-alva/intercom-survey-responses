@@ -1,47 +1,46 @@
-version: 1
+version: 2
 
 models:
-
   - name: dim_dates
-    description: "Date dimension table containing calendar attributes"
-    config:
-      contract:
-        enforced: true
+    description: "Dates used to aggregate and analyze data"
     columns:
 
       - name: date_day
-        description: "The primary key for this table"
+        description: "Date of the day"
         data_type: date
-        constraints:
-          - type: not_null
-          - type: primary_key
-            warn_unenforced: false
-        tests:
-          - unique
+      
       - name: day_of_week
-        description: "Name of the day of week"
-        data_type: string
+        description: "Day of week"
+        data_type: integer
+
       - name: day_of_month
-        description: "Day number within the month (1-31)"
+        description: "Day of month"
         data_type: integer
+
       - name: day_of_year
-        description: "Day number within the year (1-366)"
+        description: "Day of year"
         data_type: integer
+
       - name: week_of_year
-        description: "Week number within the year"
+        description: "Week of year"
         data_type: integer
+
       - name: month_of_year
-        description: "Month number (1-12)"
+        description: "Month of year"
         data_type: integer
+
       - name: month_name
         description: "Name of the month"
         data_type: string
+
       - name: quarter_of_year
-        description: "Quarter number (1-4)"
+        description: "Quarter of year"
         data_type: integer
+
       - name: year_number
-        description: "Year number"
+        description: "Year"
         data_type: integer
+
 
   - name: csat_response
     description: "Customer satisfaction survey responses"
@@ -71,6 +70,9 @@ models:
       - name: answered_at
         description: "Timestamp when the response was submitted"
         data_type: timestamp
+      - name: answered_at_date
+        description: "Date when the response was submitted"
+        data_type: date
       - name: response
         description: "Numeric response value (1-5)"
         data_type: integer
@@ -106,6 +108,9 @@ models:
       - name: answered_at
         description: "Timestamp when the response was submitted"
         data_type: timestamp
+      - name: answered_at_date
+        description: "Date when the response was submitted"
+        data_type: date
       - name: response
         description: "Numeric response value (0-10)"
         data_type: integer

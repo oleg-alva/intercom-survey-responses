@@ -16,6 +16,7 @@ WITH source AS (
     WHERE u.email IS NOT NULL
     AND NOT u.email LIKE '%alvalabs.io'
     AND TRIM(u.email) != ''
+)
 
 SELECT
     user_id, -- int

@@ -5,6 +5,7 @@ SELECT
   day_of_year, -- int
   week_of_year, -- int
   month_of_year, -- int
+  month_start_date, -- date
   month_name, -- string
   quarter_of_year, -- int
   year_number -- int

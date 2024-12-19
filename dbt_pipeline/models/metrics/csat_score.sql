@@ -1,25 +1,18 @@
 with csat_score as (
     select 
-        d.year_number,
-        d.month_of_year,
-        d.month_name,
-        count(case when r.rating >= 4 then 1 end) as count_csat_ratings,
+        d.month_start_date,
+        count(case when r.response >= 4 then 1 end) as count_csat_ratings,
         count(*) as count_sent
     from {{ ref('csat_response') }} r
     inner join {{ ref('dim_dates') }} d
-        on date(r.created_at) = d.date_day
+        on date(r.answered_at_date) = d.date_day
     group by 
-        d.year_number,
-        d.month_of_year,
-        d.month_name
+        d.month_start_date
 )
 
 select
-    year_number, -- int 
-    month_of_year, -- int
-    month_name, -- string
+    month_start_date, -- date
     round(safe_divide(count_csat_ratings, count_sent), 2) as csat_score -- float
 from csat_score
 order by 
-    year_number,
-    month_of_year
+    month_start_date

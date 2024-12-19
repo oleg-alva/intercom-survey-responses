@@ -19,9 +19,9 @@ WITH source AS (
 )
 
 SELECT 
-    user_id,
-    email,
-    organization_id,
-    organization_name,
-    total_job_applications
+    user_id, -- int
+    email, -- string
+    organization_id, -- int
+    organization_name, -- string
+    total_job_applications -- int
 FROM source

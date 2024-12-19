@@ -2,12 +2,31 @@ version: 2
 
 sources:
 
-  - name: "contract_batch"
+  - name: "main"
     database: alva-backend
-    schema: organization_contract
+    schema: main
     freshness:
-      warn_after: { count: 2, period: hour }
-      error_after: { count: 4, period: hour }
+      warn_after: { count: 2, period: day }
+      error_after: { count: 3, period: day }
     tables:
-      - name: younium_account
-      - name: younium_subscription
+      - name: auth_user
+      - name: employment
+      - name: organization
+      - name: access_group_table
+      - name: job_application
+      - name: job_position
+
+  - name: "user_activity_events_production"
+    database: alva-metrics
+    schema: user_activity_events_production
+    freshness:
+      warn_after: { count: 3, period: day }
+      error_after: { count: 5, period: day }
+    tables:
+      - name: intercom_survey_result_created
+
+  - name: "satismeter_legacy_data"
+    database: alva-metrics
+    schema: satismeter_legacy_data
+    tables:
+      - name: satismeter_legacy_responses

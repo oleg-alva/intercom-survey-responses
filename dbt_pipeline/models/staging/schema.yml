@@ -2,18 +2,94 @@ version: 2
 
 models:
 
-  - name: staging_table_name
-    description: "Staging table description"
+  - name: staging__responses
+    description: "Staged survey responses from Intercom"
     config:
       contract:
         enforced: true
     columns:
-      - name: column_name
-        description: "Column description"
+      - name: survey_content_id
+        description: "Unique identifier for the survey content"
+        data_type: integer
+        constraints:
+          - type: not_null
+      - name: survey_content_title
+        description: "Title of the survey"
         data_type: string
+      - name: respondent_email
+        description: "Email of the survey respondent"
+        data_type: string
+      - name: organization_id
+        description: "Organization identifier"
+        data_type: integer
+      - name: organization_name
+        description: "Name of the organization"
+        data_type: string
+      - name: question_id
+        description: "Identifier for the survey question"
+        data_type: integer
+      - name: answered_at
+        description: "Timestamp when the question was answered"
+        data_type: timestamp
+      - name: response
+        description: "Response value"
+        data_type: string
+
+  - name: staging__employee_data
+    description: "Staged employee information from auth and employment data"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: user_id
+        description: "Unique identifier for the employee"
+        data_type: integer
         constraints:
           - type: not_null
           - type: primary_key
             warn_unenforced: false
-        data_tests:
-          - unique
+      - name: email
+        description: "Employee email address"
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: organization_id
+        description: "Organization identifier"
+        data_type: integer
+      - name: organization_name
+        description: "Name of the organization"
+        data_type: string
+      - name: is_key_member
+        description: "Flag indicating if the employee is a key member"
+        data_type: boolean
+      - name: access_group_name
+        description: "Name of the access group"
+        data_type: string
+
+  - name: staging__candidate_data
+    description: "Staged candidate information with job application counts"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: user_id
+        description: "Unique identifier for the candidate"
+        data_type: integer
+        constraints:
+          - type: not_null
+          - type: primary_key
+            warn_unenforced: false
+      - name: email
+        description: "Candidate email address"
+        data_type: string
+        constraints:
+          - type: not_null
+      - name: organization_id
+        description: "Organization identifier"
+        data_type: integer
+      - name: organization_name
+        description: "Name of the organization"
+        data_type: string
+      - name: total_job_applications
+        description: "Total number of job applications submitted by the candidate"
+        data_type: integer

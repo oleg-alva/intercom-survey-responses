@@ -1,15 +1,18 @@
 SELECT 
     survey_content_id, -- int
     survey_content_title, -- string
-    email as respondent_email, -- string
+    respondent_email, -- string
     organization_id, -- int
     organization_name, -- string
-    answers.question_id, -- int
-    answers.answered_at, -- timestamp
-    answers.response, -- int
-    CASE WHEN answer_1_value >= 9 THEN 'promoter'
-         WHEN answer_1_value >= 7 AND answer_1_value <= 8 THEN 'passive'
-         WHEN answer_1_value <= 6 THEN 'detractor'
+    question_id, -- int
+    answered_at, -- timestamp
+    date(answered_at) as answered_at_date, -- date
+    CAST(response AS INT) as response, -- int
+    CASE WHEN CAST(response AS INT) >= 9 THEN 'promoter'
+         WHEN CAST(response AS INT) >= 7 AND CAST(response AS INT) <= 8 THEN 'passive'
+         WHEN CAST(response AS INT) <= 6 THEN 'detractor'
     END as category -- string
 FROM {{ ref('staging__responses') }}
-WHERE survey_content_id IN ('id1', 'id2', 'id3')
+WHERE true
+AND survey_content_id IN (135107)
+AND question_id IN (431254)
