@@ -12,7 +12,8 @@ with csat_score as (
 
 select
     month_start_date, -- date
-    round(safe_divide(count_csat_ratings, count_sent), 2) as csat_score -- float
+    count_sent,
+    round(safe_divide(count_csat_ratings, count_sent), 3) as csat_score -- float
 from csat_score
 order by 
     month_start_date

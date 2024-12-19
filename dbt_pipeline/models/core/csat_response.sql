@@ -14,5 +14,6 @@ SELECT
     END as category -- string
 FROM {{ ref('staging__responses') }}
 WHERE true
+AND response IS NOT NULL
 AND survey_content_id IN (135826)
 AND question_id IN (433942)

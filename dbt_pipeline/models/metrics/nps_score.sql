@@ -13,6 +13,7 @@ with nps_rating as (
 
 select
     month_start_date,
+    response_count,
     round(safe_divide((n_promoters - n_detractors) * 100.0, response_count)) as nps_score
 from nps_rating
 order by 

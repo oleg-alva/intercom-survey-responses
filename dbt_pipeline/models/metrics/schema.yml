@@ -14,6 +14,12 @@ models:
         constraints:
           - type: not_null
 
+      - name: count_sent
+        description: "Total number of responses sent"
+        data_type: "int"
+        constraints:
+          - type: not_null
+
       - name: csat_score
         description: "Monthly CSAT score calculated as (ratings >= 4) / (total responses), rounded to 2 decimal places"
         data_type: "float"
@@ -29,6 +35,12 @@ models:
       - name: month_start_date
         description: "Month number (1-12) of the CSAT measurement"
         data_type: "date"
+        constraints:
+          - type: not_null
+
+      - name: response_count
+        description: "Total number of responses"
+        data_type: "int"
         constraints:
           - type: not_null
 
